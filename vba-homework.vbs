@@ -1,3 +1,6 @@
+'Name: Dinnara Hitt
+'VBA Challenge
+
 Sub stock_totals()
 
 For Each ws In Worksheets
@@ -24,10 +27,7 @@ For Each ws In Worksheets
        
     sum_volume = 0
     lastrow = ws.Cells(Rows.Count, 1).End(xlUp).row
-    'lastcolumn = ws.Cells(1, Columns.Count).End(xlToLeft).Column
-    'MsgBox ("lastrow = " + Str(lastrow))
-    'MsgBox ("lastcolumn = " + Str(lastcolumn))
-    
+        
     ws.Range("J1:R" & lastrow).Clear
         
     col = 10
@@ -49,15 +49,12 @@ For Each ws In Worksheets
             ticker = ws.Cells(i, 1).Value
             open_price = ws.Cells(i, 3).Value
             first_time = False
-            'MsgBox ("open_price = " + Str(open_price))
         End If
         
         sum_volume = sum_volume + ws.Cells(i, 7)
         
         If ticker <> ws.Cells(i + 1, 1).Value Or i = lastrow Then
             close_price = ws.Cells(i, 6)
-            'MsgBox ("i = " + Str(i))
-            'MsgBox ("close_price = " + Str(close_price))
             ws.Cells(row, col).Value = ticker
             yearly_change = close_price - open_price
             
@@ -103,7 +100,7 @@ For Each ws In Worksheets
                 great_increase = percent_change
             End If
             
-            if great_total_volume = 0 Then
+            If great_total_volume = 0 Then
                 keep_ticker_vol = ticker
                 great_total_volume = sum_volume
             End If
@@ -123,17 +120,17 @@ For Each ws In Worksheets
     Next i
 
 
-    ws.cells(2,col + 6).Value = "Greatest % Increase"
-    ws.cells(3,col + 6).Value = "Greatest % Decrease"
-    ws.cells(4,col + 6).Value = "Greatest Total Volume"
-    ws.cells(1,col+7).Value = "TIcker"
-    ws.cells(1,col+8).Value = "Value"
-    ws.cells(2,col+7).Value = keep_ticker_inc
-    ws.cells(2,col+8).Value = (str(great_increase)+"%")
-    ws.cells(3,col+7).Value = keep_ticker_dec
-    ws.cells(3,col+8).Value = (str(great_decrease)+"%")
-    ws.cells(4,col+7).Value = keep_ticker_vol
-    ws.cells(4,col+8).Value = great_total_volume
+    ws.Cells(2, col + 6).Value = "Greatest % Increase"
+    ws.Cells(3, col + 6).Value = "Greatest % Decrease"
+    ws.Cells(4, col + 6).Value = "Greatest Total Volume"
+    ws.Cells(1, col + 7).Value = "TIcker"
+    ws.Cells(1, col + 8).Value = "Value"
+    ws.Cells(2, col + 7).Value = keep_ticker_inc
+    ws.Cells(2, col + 8).Value = (Str(great_increase) + "%")
+    ws.Cells(3, col + 7).Value = keep_ticker_dec
+    ws.Cells(3, col + 8).Value = (Str(great_decrease) + "%")
+    ws.Cells(4, col + 7).Value = keep_ticker_vol
+    ws.Cells(4, col + 8).Value = great_total_volume
 
 
     
@@ -141,5 +138,4 @@ Next ws
 
 
 End Sub
-
 
